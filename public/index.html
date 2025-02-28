@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado del Curl</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    pre {
+      background-color: #f4f4f9;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Resultado del Comando Curl</h1>
+  <button id="fetch-button">Ejecutar Curl</button>
+  <pre id="output"></pre>
+
+  <script>
+    const fetchButton = document.getElementById('fetch-button');
+    const outputElement = document.getElementById('output');
+
+    fetchButton.addEventListener('click', async () => {
+      try {
+        const response = await fetch('/.netlify/functions/curl');
+        const data = await response.text();
+        outputElement.textContent = data;
+      } catch (error) {
+        outputElement.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
